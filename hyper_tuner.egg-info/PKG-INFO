@@ -1,0 +1,12 @@
+Metadata-Version: 1.0
+Name: hyper-tuner
+Version: 0.0
+Summary: Hyperparameter's tuner for ML models
+Home-page: https://github.com/IvanStrazov/hyper_tuner/
+Author: Ivan Strazov
+Author-email: ivanstrazov@gmail.com
+License: UNKNOWN
+Description: Hyperparameter's tuner for ML models.
+        
+Keywords: hyperparameters tune ml
+Platform: UNKNOWN
