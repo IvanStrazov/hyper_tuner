@@ -26,6 +26,7 @@ class Tuner:
             estimator (Model) - model with sklearn API.
             X (catboost.Pool, dim=(n,m)) - features.
             y (catboost.Pool, dim=(k,m)) - target values.
+            cv (sklearn.Fold) - cross validation method (KFold).
             space (dict) - space for searching hyperparameters.
             common_params (dict) - common model's parameters.
             fit_params (dict) - parameters for fitting estimator.

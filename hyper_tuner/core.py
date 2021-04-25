@@ -9,7 +9,7 @@ from hyper_tuner import metrics
 
 
 def make_hyperopt(estimator,
-                  X, y,
+                  X, y, cv,
                   space, common_params={},
                   fit_params={}, predict_params={},
                   cat_params=[], int_params=[],

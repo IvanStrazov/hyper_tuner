@@ -5,6 +5,7 @@ hyper_tuner/core.py
 hyper_tuner/metrics.py
 hyper_tuner/model.py
 hyper_tuner/tuner.py
+hyper_tuner/utils.py
 hyper_tuner.egg-info/PKG-INFO
 hyper_tuner.egg-info/SOURCES.txt
 hyper_tuner.egg-info/dependency_links.txt

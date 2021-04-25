@@ -5,6 +5,8 @@
 
 import numpy as np
 
+from hyper_tuner.utils import to_numpy
+
 
 class __Pool:
     """
@@ -51,7 +53,6 @@ class __Pool:
             return self.__pool.get_label()
         elif self.__lib == "lightgbm":
             return self.__pool["y"]
-
 
 
 class __Model:
@@ -102,10 +103,9 @@ class __Model:
         """
 
         if self.__lib == "catboost":
-            return self.__estimator.predict(val_pool)
+            return self.__estimator.predict(val_pool, **predict_params)
         elif self.__lib == "lightgbm":
-            return self.__estimator.predict(X=val_pool["X"])
-
+            return self.__estimator.predict(X=val_pool["X"], **predict_params)
 
 
 def cross_val_loss(lib, estimator, X, y, cv,
@@ -120,6 +120,7 @@ def cross_val_loss(lib, estimator, X, y, cv,
         estimator (Model) - model with sklearn API.
         X ([pd.DataFrame|np.array, dim=(n,m)) - features.
         y ([pd.Series|np.array], dim=(n,)) - target.
+        cv (sklearn.Fold) - cross validation method (KFold).
         loss_fun (fun) - loss function.
         agg_fun (fun) - losses aggregation function.
         init_params (dict) - estimator's initialization parameters.
@@ -135,12 +136,11 @@ def cross_val_loss(lib, estimator, X, y, cv,
                     estimator=estimator,
                     init_params=init_params)
 
-    cv = KFold(n_splits=5)
     losses = np.array([], dtype=np.float64)
 
     for train_index, val_index in cv.split(X, y):
-        train_pool = __Pool(lib, X[train_index], y[train_index], cat_params=cat_params)
-        val_pool = __Pool(lib, X[val_index], y[val_index], cat_params=cat_params)
+        train_pool = __Pool(lib, to_numpy(X)[train_index], to_numpy(y)[train_index], cat_params=cat_params)
+        val_pool = __Pool(lib, to_numpy(X)[val_index], to_numpy(y)[val_index], cat_params=cat_params)
 
         model.fit(train_pool=train_pool,
                   fit_params=fit_params,
@@ -153,10 +153,4 @@ def cross_val_loss(lib, estimator, X, y, cv,
         loss = loss_fun(y_true, y_pred)
         losses = np.append(losses, loss)
 
-
     return agg_fun(losses)
-
-
-
-
-

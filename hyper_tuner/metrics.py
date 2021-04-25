@@ -19,7 +19,7 @@ def MAPE(y_true, y_pred):
     Compute MAPE loss function.
     """
 
-    return np.mean(np.abs(y_true - y_pred) / (y_true + 1e-6))
+    return np.mean(np.abs((y_true - y_pred) / (y_true + 1e-6)))
 
 
 def MSE(y_true, y_pred):
