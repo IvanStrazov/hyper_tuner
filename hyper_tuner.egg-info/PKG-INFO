@@ -6,7 +6,27 @@ Home-page: https://github.com/IvanStrazov/hyper_tuner/
 Author: Ivan Strazov
 Author-email: ivanstrazov@gmail.com
 License: UNKNOWN
-Description: Hyperparameter's tuner for ML models.
+Description: <h1>Hyperparameter's tuner for ML models.</h1>
+        
+        <h2>Simple example</h2>
+        <code>
+        from hyper_tuner.core import make_hyperopt
+        import config
+        
+        
+        tuner_pipe = make_hyperopt(estimator=config.ESTIMATOR,
+                                   X=X, y=y,
+                                   cv=config.CV,
+                                   space=config.SPACE, common_params=config.COMMON_PARAMS,
+                                   fit_params=config.FIT_PARAMS, predict_params=config.PREDICT_PARAMS,
+                                   cat_params=[], int_params=config.INT_PARAMS,
+                                   max_evals=2)
+        
+        print(tuner_pipe.best_parameters)
+        >> {'learning_rate': 0.16406423368959028, 'max_depth': 10, 'min_child_samples': 60, 'n_estimators': 500, 'num_leaves': 6, 'reg_alpha': 0.6174653695343534, 'reg_lambda': 0.6614076732764504}
+        </code>
+        
+        Needed packages can be installed via <code>pip install -r requirements.txt</code>
         
 Keywords: hyperparameters tune ml
 Platform: UNKNOWN
