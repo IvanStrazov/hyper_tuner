@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html>
+# Hyperparameter's tuner for ML models.
 
-<body>
-<h1>Hyperparameter's tuner for ML models.</h1>
+## Simple example
 
-<h2>Simple example</h2>
-<code>
+```
 from hyper_tuner.core import make_hyperopt
 import config
 
+X, y = ...
 
 tuner_pipe = make_hyperopt(estimator=config.ESTIMATOR,
                            X=X, y=y,
@@ -20,9 +18,9 @@ tuner_pipe = make_hyperopt(estimator=config.ESTIMATOR,
 
 print(tuner_pipe.best_parameters)
 >> {'learning_rate': 0.16406423368959028, 'max_depth': 10, 'min_child_samples': 60, 'n_estimators': 500, 'num_leaves': 6, 'reg_alpha': 0.6174653695343534, 'reg_lambda': 0.6614076732764504}
-</code>
+```
 
-<h2>References</h2>
-Needed packages can be installed via <code>pip install -r requirements.txt</code>
-</body>
-</html>
+## References
+
+Needed packages can be installed via `pip install -r requirements.txt`
+
