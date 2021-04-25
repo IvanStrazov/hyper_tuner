@@ -22,6 +22,7 @@ def make_hyperopt(estimator,
         estimator (Model) - model with sklearn API.
         X ([pd.DataFrame|np.array, dim=(n,m)) - features.
         y ([pd.Series|np.array], dim=(n,)) - target.
+        cv (sklearn.Fold) - cross validation method (KFold).
         space (dict) - space for searching hyperparameters.
         common_params (dict) - common model's parameters.
         fit_params (dict) - parameters for fitting estimator.
@@ -43,8 +44,9 @@ def make_hyperopt(estimator,
         lib = "lightgbm"
 
     tuner_pipe = tuner.Tuner(lib=lib, estimator=estimator,
-                             X=X, y=y,
+                             X=X, y=y, cv=cv,
                              space=space, common_params=common_params,
+                             fit_params=fit_params, predict_params=predict_params,
                              cat_params=cat_params, int_params=int_params)
     tuner_pipe.make_tune(max_evals=max_evals, loss_fun=loss_fun, agg_fun=agg_fun)
 

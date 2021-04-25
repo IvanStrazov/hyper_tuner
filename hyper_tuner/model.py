@@ -4,7 +4,6 @@
 
 
 import numpy as np
-from sklearn.model_selection import KFold#, StratifiedKFold
 
 
 class __Pool:
@@ -109,7 +108,7 @@ class __Model:
 
 
 
-def cross_val_loss(lib, estimator, X, y,
+def cross_val_loss(lib, estimator, X, y, cv,
                    loss_fun, agg_fun,
                    init_params, fit_params, predict_params,
                    cat_params):
@@ -136,10 +135,10 @@ def cross_val_loss(lib, estimator, X, y,
                     estimator=estimator,
                     init_params=init_params)
 
-    skf = KFold(n_splits=5)
+    cv = KFold(n_splits=5)
     losses = np.array([], dtype=np.float64)
 
-    for train_index, val_index in skf.split(X, y):
+    for train_index, val_index in cv.split(X, y):
         train_pool = __Pool(lib, X[train_index], y[train_index], cat_params=cat_params)
         val_pool = __Pool(lib, X[val_index], y[val_index], cat_params=cat_params)
 

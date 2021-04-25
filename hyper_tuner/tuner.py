@@ -2,10 +2,10 @@
 # Python 3.9
 # 2021-04-13
 
+
 import functools
 from hyperopt import fmin, tpe, STATUS_OK, Trials
 from hyper_tuner import model
-
 
 
 class Tuner:
@@ -14,7 +14,7 @@ class Tuner:
     """
 
     def __init__(self, lib, estimator,
-                 X, y,
+                 X, y, cv,
                  space, common_params={},
                  fit_params={}, predict_params={},
                  cat_params=[], int_params=[]):
@@ -38,6 +38,7 @@ class Tuner:
         self.__estimator = estimator
         self.__X = X
         self.__y = y
+        self.__cv = cv
         self.__space = space
         self.__init_params = common_params
         self.__fit_params = fit_params
@@ -74,7 +75,7 @@ class Tuner:
         self.__init_params.update(model_params)
 
         loss = model.cross_val_loss(lib=self.__lib, estimator=self.__estimator,
-                                    X=self.__X, y=self.__y,
+                                    X=self.__X, y=self.__y, cv=self.__cv,
                                     loss_fun=loss_fun, agg_fun=agg_fun,
                                     init_params=self.__init_params,
                                     fit_params=self.__fit_params,

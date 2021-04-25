@@ -1,8 +1,12 @@
 
+
+from sklearn.model_selection import KFold
 from hyperopt import hp
 
 OBJECTIVE = "classification" # "regression" / "classification"
 LIBRARY = "lightgbm" # "lightgbm" / "catboost
+
+CV = KFold
 
 
 ESTIMATOR = {
