@@ -3,6 +3,6 @@
 # 2021-04-13
 
 
-__version__ = "1.0"
+__version__ = "1.1"
 
 from hyper_tuner import core

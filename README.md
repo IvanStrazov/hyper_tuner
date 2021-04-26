@@ -18,7 +18,10 @@ tuner_pipe = make_hyperopt(estimator=config.ESTIMATOR,
 100%|██████████████████████████████████████████████████| 2/2 [00:06&lt;00:00,  3.25s/trial, best loss: 14.657120473611053]
 
 print(tuner_pipe.best_parameters)
->> {'learning_rate': 0.16406423368959028, 'max_depth': 10, 'min_child_samples': 60, 'n_estimators': 500, 'num_leaves': 6, 'reg_alpha': 0.6174653695343534, 'reg_lambda': 0.6614076732764504}
+>> {'learning_rate': 0.16406423368959028, 'max_depth': 10,
+    'min_child_samples': 60, 'n_estimators': 500,
+    'num_leaves': 6, 'reg_alpha': 0.6174653695343534,
+    'reg_lambda': 0.6614076732764504}
 ```
 
 ## References

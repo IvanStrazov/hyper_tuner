@@ -1,4 +1,4 @@
-README.txt
+README.md
 setup.py
 hyper_tuner/__init__.py
 hyper_tuner/core.py
